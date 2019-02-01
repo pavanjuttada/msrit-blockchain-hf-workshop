@@ -1,0 +1,72 @@
+Testing Steps:
+
+Step 1: Create New Participants(VehicleOwner, Police & Insurancer)
+
+            -VehicleOwner
+                {
+                "$class": "org.example.insurance.VehicleOwner",
+                "mailId": "pavanjuttada@gmail.com",
+                "phone": "91-9030255145",
+                "id": "111",
+                "name": "Pavan Kumar J"
+                }
+
+            -Police
+                {
+                "$class": "org.example.insurance.Police",
+                "stationID": "22",
+                "stationName": "Central Benguluru",
+                "id": "222",
+                "name": "Gabbar Sing"
+                }
+
+            -Insurancer
+                {
+                "$class": "org.example.insurance.Insurancer",
+                "companyName": "NIC Pvt Ltd.",
+                "id": "333",
+                "name": "Sandeep"
+                }
+
+Step 2: Submit Transactions
+           
+           Select Transaction type:  ClaimInsurance
+                {
+                "$class": "org.example.insurance.ClaimInsurance",
+                "id": "999",
+                "type": "Theft",
+                "description": "Bike parked in the ground, it's missed.",
+                "firReference": "",
+                "status": "APPLIED",
+                "approval": [],
+                "applicant": "resource:org.example.insurance.VehicleOwner#111"
+                }
+            Submit
+
+            Select Transaction type:  Approve
+                {
+                "$class": "org.example.insurance.Approve",
+                "claimApplication": "resource:org.example.insurance.ClaimApplication#999",
+                "approvingParty": "resource:org.example.insurance.Police#222",
+                "firReference": "BLR-FIR-999"
+                }
+            Submit
+
+            Select Transaction type:  Approve
+                {
+                "$class": "org.example.insurance.Approve",
+                "claimApplication": "resource:org.example.insurance.ClaimApplication#999",
+                "approvingParty": "resource:org.example.insurance.Insurancer#333",
+                "firReference": ""
+                }
+            Submit
+
+            Select Transaction type:  Close
+                {
+                "$class": "org.example.insurance.Close",
+                "claimApplication": "resource:org.example.insurance.ClaimApplication#999",
+                "closeReason": "All Approvals done. Payment sent to Vehicale Owner"
+                }
+            Submit
+
+            
