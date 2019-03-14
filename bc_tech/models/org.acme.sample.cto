@@ -6,19 +6,27 @@ namespace org.acme.sample
 asset Sensor identified by teamID {
   //create your Team asset model
   o String teamID
+  o String teamName
+  o Double sensorTemp
+  o Double thermostatTemp
+  o String recommendation
 }
 
 transaction SetSensorTemp {
   //create your SetSensorTemp transaction model
-  
+  --> Sensor gauge
+  o Double newSensorValue
 }
 
 transaction ChangeThermostatTemp {
   //create your ChangeThermostatTemp transaction model
-  
+  --> Sensor thermostat
+  o Double newThermostatValue
 }
 
 transaction CompareWeather{
   //create your CompareWeather transaction model
-  
+  --> Sensor recommend
+  o Double outsideTemp
+  o Double feelsLike
 }
